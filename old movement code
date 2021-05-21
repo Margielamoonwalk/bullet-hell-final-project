@@ -1,0 +1,173 @@
+
+#pygame.init()
+#player variables and input
+#class beam():# player shooting variables "beam"
+ #   def __init__(self, beamy, beamx):
+#          self.beamy = beamy
+#          self.beamx = beamx
+#          self.angle = 0
+#          self.A = 10
+#          self.B = .2
+#          self.C = 0
+#          self.D = 0
+#
+#    def shoot(self):# way for player to shoot
+#      print ("inside shoot function")
+#      self.keys = pygame.key.get_pressed()
+#      if self.keys[pygame.K_SPACE]:
+#        print("pressed K_SPACE")
+#        self.beam = True
+#      else:
+#        self.beam = False
+  
+
+#      if self.beam == True:
+#        print("in beam function, beam is true")
+#        self.angle+=1 #rotate angle
+#        self.beamx = self.beamx+self.angle*5 #this handles how fast the beam moves to the right
+#        self.beamy = self.A*sin(self.B*(self.angle-self.C))+self.D #this handles the shape and size of the wave
+
+        # draws the beam to screen
+#        def beamdraw(self,screen,ypos,xpos):    
+#          print("drawing beam")
+#          pygame.draw.circle(screen, (200, 0, 100), (int(self.beamx+10), int(self.beamy+ypos)), 5)
+
+
+#class player():      
+#  def __init__(self):
+#    self.xpos = 50
+#    self.ypos = 50
+#    self.vy = 0
+#    self.vx = 0
+#    self.keys = pygame.key.get_pressed()
+#    self.angle = 0
+#    self.A = 10
+#    self.B = .2
+#    self.C = 0
+#    self.D = 0
+#    self.beam = False
+
+#  def draw(self, screen):#place holder of place holder representing player
+#    pygame.draw.rect(screen, (150,100,180), (self.xpos, self.ypos, 25,25))
+    #print("drawing player at ", self.xpos, self.ypos)
+#    if self.beam == True:
+#      def beamdraw(self,screen,ypos,xpos): 
+#       pygame.draw.circle(screen, (200, 0, 100), (int(self.beamx+10), int(self.beamy+ypos)), 5)
+
+#  def move(self):# player input
+    #print ("inside move function")
+#    self.keys = pygame.key.get_pressed()
+
+
+
+#    if self.keys[pygame.K_w]:
+#       print("pressed w")
+#       self.vy = -5
+#    if self.keys[pygame.K_s]:
+#       print("pressed s")
+#       self.vy = 5
+#    if self.keys[pygame.K_a]:
+#       print("pressed a")
+#       self.vx = -5
+#    if self.keys[pygame.K_d]:
+#       print("pressed d")
+#       self.vx = 5
+
+#    self.xpos += self.vx
+#    self.ypos += self.vy
+    
+#    self.vx *= .85
+#    self.vy *= .85
+#    print("position is ", self.xpos, " , ", self.ypos)
+
+  
+      
+    
+
+
+#OLD CODE ++++++++++++++++++++++++++++++++++++++++++++
+
+#player postion
+#xpos = 50
+#ypos = 50
+
+#player position
+#vx = 0
+#vy = 0
+
+#variables to control player shooting
+#beam = False
+#beamx = 0
+#beamy = 0
+#angle = 0
+#A = 10
+#B = .2
+#C = 0
+#D = 0
+
+#ship = pygame.image.load("ship.png")# place holder ship for now
+#shipRect = ship.get_rect(topleft = (xpos, ypos))
+
+#gamescreen = pygame.display.set_mode((700,500))
+#clocky = pygame.time.Clock()
+#PlayingGame = True
+
+#while PlayingGame:
+
+#  clocky.tick(60)
+
+#  events = pygame.event.get()
+
+#  for event in events:
+#    if event.type == pygame.QUIT:
+#      PlayingGame = False
+      
+#  keys = pygame.key.get_pressed()
+
+#users movment keys
+#  if keys[pygame.K_LEFT]:
+#      vx=-5
+#  elif keys[pygame.K_RIGHT]:
+#      vx=5
+#  else:
+#      vx = 0
+#
+#  if keys[pygame.K_DOWN]:
+#      vy =5
+#  elif keys[pygame.K_UP]:
+  #    vy=-5
+ # else:
+#      vy=0
+
+# way for user to fire
+#  if keys[pygame.K_SPACE]:
+#      beam = True
+#  else:
+#      beam = False
+
+# player physics
+  #if beam is True:
+  #    angle+=1 #rotate angle
+ #     beamx = xpos+angle*5 #this handles how fast the beam moves to the right
+#      beamy = A*sin(B*(angle-C))+D #this handles the shape and size of the wave
+
+#      beamx2 = xpos + angle*5
+ #     beamy2 = A*sin(B*(angle-C))+D
+  #else:
+      #angle = 0
+        
+  #update player position by adding velocity to position      
+  #xpos += vx
+  #ypos += vy
+  #shipRect = ship.get_rect(topleft = (xpos, ypos))
+  #RENDER SECTION 
+  #gamescreen.fill((0,0,0))
+
+  #gamescreen.blit(ship, shipRect)
+
+  #draws the players bullets and or beam
+  #if beam is True:
+      #pygame.draw.circle(gamescreen, (200, 0, 100), (int(beamx+10), int(beamy+ypos)), 5)
+      #pygame.draw.circle(gamescreen, (90, 90, 0), (int (beamx2+10), int(beamy2+ypos)), 5)
+      
+  #pygame.display.flip()
