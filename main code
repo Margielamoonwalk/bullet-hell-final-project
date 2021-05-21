@@ -1,0 +1,43 @@
+import pygame
+import math
+from math import sin
+from player import flyNgun
+
+
+pygame.init()
+
+# setting the screen to be 700 by 500 and adding title to it screen
+screen = pygame.display.set_mode((700,500))
+pygame.display.set_caption("bullet hell 1.0")
+clocky = pygame.time.Clock()
+PlayingGame = True
+
+player = flyNgun.player()
+beam = flyNgun.beam(player.xpos, player.ypos)
+
+
+#game loop
+while PlayingGame:
+  clocky.tick(60)#60 fps
+  events = pygame.event.get()
+
+  for event in events:
+    if event.type == pygame.QUIT:
+       Playing = False
+
+
+  #GAME PHYSICS
+  beam.shoot()
+  player.move()
+
+  #RENDER SECTION
+  screen.fill((0,0,0))
+  player.draw(screen)
+  beam.beamdraw(screen, player.xpos, player.ypos)
+  
+  
+
+  
+
+  pygame.display.flip()
+pygame.quit()
