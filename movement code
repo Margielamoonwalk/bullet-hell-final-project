@@ -1,0 +1,109 @@
+import pygame
+import math
+from math import sin
+
+#CONSTANTS
+RIGHT = 0
+LEFT = 1
+UP = 2
+DOWN = 3
+
+
+gamescreen = pygame.display.set_mode((700,500))
+pygame.display.set_caption("bullet hell 1.0")
+clocky = pygame.time.Clock()
+PlayingGame = True
+
+#SHIP CLASS--------------------------------------------------------------------------------------
+class ship:
+    #constructor
+    def __init__(self):
+        #player position
+        self.xpos = 50
+        self.ypos = 75
+        #player speed
+        self.vx = 0
+        self.vy = 0
+        #variables to control wave beam
+        self.beam = False #5/12 mo added "self"
+        self.beamx = 0
+        self.beamy = 0
+        self.angle = 0
+        self.A = 10
+        self.B = .2
+        self.C = 0
+        self.D = 0
+        #ship image load
+        self.shipImg = pygame.image.load("place holder files/ship.png")
+        self.shipRect = self.shipImg.get_rect(topleft = (self.xpos, self.ypos))
+       
+    def move(self, direction):
+        print(self.xpos," , ", self.ypos)
+        if direction is RIGHT:
+            self.vx=5
+        elif direction is LEFT:
+            self.vx = -5
+        elif direction is UP:
+            self.vy = -5
+        elif direction is DOWN:
+            self.vy = 5
+        else:
+            self.vx = 0
+        #add code for up/down movement here
+        self.xpos +=self.vx
+        self.ypos +=self.vy
+       
+   
+    def draw(self):
+        #print(self.xpos," , ", self.ypos)
+        self.shipRect = self.shipImg.get_rect(topleft = (self.xpos, self.ypos))
+        gamescreen.blit(self.shipImg, self.shipRect)
+
+    def shoot(self):
+        print("shooting", self.beamx, " , ", self.beamy)
+        
+        self.angle+=1 #rotate angle
+        self.beamx = self.angle*10 #this handles how fast the beam moves to the right
+
+        self.beamy = 10*self.A*sin(self.B*(self.angle-self.C))+self.D #this handles the shape and size of the wave
+
+      #draw beam when fired
+        pygame.draw.circle(gamescreen, (200, 0, 100), (self.beamx+10+self.xpos, self.beamy+self.ypos+20), 5)
+        
+
+
+#instantiate player ship
+player = ship()
+
+#BEGIN GAME LOOP#################################################################
+while PlayingGame:
+ 
+  clocky.tick(60)
+ 
+  events = pygame.event.get()
+ 
+  for event in events:
+    if event.type == pygame.QUIT:
+      PlayingGame = False
+     
+  keys = pygame.key.get_pressed()
+     
+       
+  if keys[pygame.K_LEFT]:
+      player.move(LEFT)
+  elif keys[pygame.K_RIGHT]:
+      player.move(RIGHT)
+  elif keys[pygame.K_UP]:
+      player.move(UP)
+  elif keys[pygame.K_DOWN]:
+      player.move(DOWN)
+  #add movement back for UP/DOWN
+
+
+
+  #fire wave beam
+  if keys[pygame.K_SPACE]:
+      beam = True
+  else:
+      beam = False
+  
